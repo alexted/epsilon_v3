@@ -3,17 +3,18 @@ from .models import Project, Picture, Video
 
 
 class PictureSerializer(serializers.ModelSerializer):
+    screenshot_thumbnail = serializers.ImageField(read_only=True)
 
     class Meta:
         model = Picture
-        fields = ('screenshot_thumbnail', 'screenshot',)
+        fields = ('project', 'screenshot_thumbnail','screenshot',)
 
 
 class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
-        fields = ('video',)
+        fields = ('project', 'video',)
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -22,4 +23,12 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ('category', 'header', 'slug_header', 'description', 'url', 'created', 'pictures', 'videos')
+        fields = (
+            'category',
+            'title',
+            'slug_title',
+            'description',
+            'url',
+            'created',
+            'pictures',
+            'videos')
